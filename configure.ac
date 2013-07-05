@@ -431,6 +431,18 @@ if test "x$scrypt" = xyes; then
 fi
 
 
+wbb="yes"
+
+AC_ARG_ENABLE([wbb],
+	[AC_HELP_STRING([--disable-wbb],[Compile support for WBB (default enabled)])],
+	[wbb=$enableval]
+	)
+if test "x$wbb" = xyes; then
+	AC_DEFINE_UNQUOTED([WANT_WBB], [1], [Enable WBB])
+fi
+AM_CONDITIONAL([HAS_WBB], [test x$wbb = xyes])
+
+
 curses="auto"
 
 AC_ARG_WITH([curses],
@@ -928,6 +940,12 @@ elif test "x$ztexwarn" = xyes; then
 	echo "  ZTEX.FPGAs...........: Disabled (libusb not found)"
 else
 	echo "  ZTEX.FPGAs...........: Disabled"
+fi
+
+if test "x$wbb" = xyes; then
+	echo "  WBB..................: Enabled"
+else
+	echo "  WBB..................: Disabled"
 fi
 
 if test "x$bitforce$modminer" != xnono; then

@@ -205,6 +205,10 @@ dist_bitstreams_DATA += $(top_srcdir)/bitstreams/ztex_*.bi?
 dist_doc_DATA += $(top_srcdir)/bitstreams/COPYING_ztex
 endif
 
+if HAS_WBB
+bfgminer_SOURCES += driver-wbb.c driver-wbb.h
+endif
+
 bin_PROGRAMS += bfgminer-rpc
 bfgminer_rpc_SOURCES = api-example.c
 bfgminer_rpc_LDADD = @WS2_LIBS@

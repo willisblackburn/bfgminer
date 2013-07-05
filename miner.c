@@ -57,6 +57,7 @@
 #include "findnonce.h"
 #include "adl.h"
 #include "driver-cpu.h"
+#include "driver-wbb.h"
 #include "driver-opencl.h"
 #include "bench_block.h"
 #include "scrypt.h"
@@ -8740,6 +8741,8 @@ void drv_detect_all()
 	if (likely(have_libusb))
 		ft232r_scan_free();
 #endif
+
+	wbb_drv.drv_detect();
 }
 
 static
